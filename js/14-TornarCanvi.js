@@ -23,7 +23,7 @@ function canvi() {
     
     for (let i=0; i < euros.length; i++) {
         if(parseInt(canvi/euros[i]) > 0) {
-            console.log(parseInt(canvi / euros[i])+" de "+euros[i]);
+            console.log(parseInt(canvi / euros[i])+" de "+euros[i]+"€");
             canvi = canvi%euros[i];
         }
     }
