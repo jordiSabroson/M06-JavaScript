@@ -1,10 +1,10 @@
 /*
  * Funció que demana a l'usuari el número de columnes que tindrà una taula. A partir d'aquest número (per exemple 5), 
- * crear una taula de 5 columnes i pintar la última fila sencera de vermell, després la superior pintar només
- * 3 caselles i la superior només 1. Vamos que quedi una piràmide pintada. El número haurà de ser senar sempre.
+ * crear una taula de 5 columnes i pintar la fila del mig sencera. Després crear un rombo a partir d'aquesta línea central.
+ * Només s'admeten números senars.
  */
 
-function piramide() {
+function rombo() {
     // Preguntem el número de columnes
     let num = parseInt(prompt("Introdueix el número columnes (ha de ser un número senar): "));
 
@@ -41,9 +41,9 @@ function piramide() {
     }
 
     // Variables auxiliars pels bucles per pintar les caselles
-    let enBlanc = 1, vermelles = 1;
+    let enBlanc = 1, vermelles = 1, enBlancRombo = 1, vermellesRombo = num-2;
 
-    // Bucle per crear totes les cel·les
+    // Bucle per crear totes les cel·les de la meitat superior
     for (let i = 0; i < meitat; i++) {
 
         // Variable que crea les files
@@ -68,7 +68,7 @@ function piramide() {
         // Increment del valor de caselles vermelles
         vermelles += 2;
 
-        // // Bucle for per imprimir les caselles blanques a la dreta de la piràmide
+        // Bucle for per imprimir les caselles blanques a la dreta de la piràmide
         for (let c = 0; c < blanques; c++) {
             cell(row, "white");
         }
@@ -76,6 +76,32 @@ function piramide() {
         // Mètode que afegeix la fila dins el table Body
         tauBody.appendChild(row);
     }
+
+    // Bucle per crear la part inferior del rombo
+    for (let o=0; o < meitat-1; o++) {  // Comença a iterar pel valor de la meitat -1 ja que no volem repetir la línea del mig del rombo
+
+        let row = document.createElement("tr");
+
+        // Variable que agafa el valor introduit i el resta al valor introduit menys 1 al principi (exemple: 5 - (5-1) = 1)
+        let blanquesRombo = (num - (num-enBlancRombo));
+        // Increment del valor que es resta (exemple: 5 - (5-2) = 2)
+        enBlancRombo +=1;
+        
+        for (let s = 0; s < blanquesRombo; s++) {
+            cell(row, "white");
+        }
+
+        for (let f = 0; f < vermellesRombo; f++) {
+            cell(row, "red");
+        }
+        vermellesRombo -= 2;
+
+        for (let d = 0; d < blanquesRombo; d++) {
+            cell(row, "white");
+        }
+        tauBody.appendChild(row);
+    }
+
 
     // Mètode que posa el table Body (<tbody>) dins l'element table (<table>) de l'HTML
     tau.appendChild(tauBody);
