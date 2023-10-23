@@ -6,9 +6,15 @@
  */
 function mitjanit() {
     let gora = prompt("Introdueix una hora (HH:MM): ");
+    let arr;
     if (gora == "00:00") {
         document.write("Bon any nou !");
     } else {
-        gora.split(":");
+        arr = gora.split(":");
     }
+    let hora = 23 - arr[0];
+    let minuts = 60 - arr[1];
+    minuts = minuts + hora * 60;
+
+    document.write("Queden " + minuts + " minuts fins mitjanit.");
 }
